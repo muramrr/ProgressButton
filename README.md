@@ -8,7 +8,7 @@ modificated for public usage
 
 Custom button with progress anim and transition to another activity/fragment
 
-Better use with **AsyncTask** or with **Handler()**
+Better use with **AsyncTask** or **Handler()**
 
 ![](https://github.com/muramrr/ProgressButton/blob/master/test.gif)
 ## Installation
