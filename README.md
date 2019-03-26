@@ -2,7 +2,9 @@
 
 original source code: [**ProgressButton**](https://github.com/ldoublem/ProgressButton)
 
-modificated for public usage
+Some bugs and issues fixed. Code optimized to run more smoothly.
+
+*modificated for public usage*
 
 ## Overview
 
