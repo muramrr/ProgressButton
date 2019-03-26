@@ -56,7 +56,7 @@ pb_button = findViewById(R.id.btn_done);
 pb_button.setOnClickListener(new View.OnClickListener() {
   @Override
   public void onClick (View v) {
-    pb_button.startAnim(); //starting progress button loading
+    pb_button.startAnim(); //start progress button loading
     /**
     * manual stop animation method
     * you can handle it with Runnable()
