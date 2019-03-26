@@ -6,7 +6,7 @@ modificated for public usage
 
 ## Overview
 
-Custom button with progress anim and transition to another activity/screen
+Custom button with progress anim and transition to another activity/fragment
 
 Better use with **AsyncTask** or with **Handler()**
 
