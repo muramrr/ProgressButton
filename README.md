@@ -67,14 +67,7 @@ pb_button.setOnClickListener(new View.OnClickListener() {
     * startAnim() in preExecute
     * stopAnim() in postExecute
     */
-    pb_button.stopAnim(new ProgressButton.OnStopAnim() {
-      @Override
-      public void Stop() {
-        Intent i=new Intent();
-        i.setClass(MainActivity.this,SecondActivity.class);
-        startActivity(i);
-      }
-    });
+    new Handler().postDelayed(() -> pb_button.stopAnim(this::startSecondActivity), 760);
   }
 });
 ```
