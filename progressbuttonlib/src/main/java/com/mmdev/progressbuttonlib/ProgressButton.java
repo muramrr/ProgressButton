@@ -21,7 +21,6 @@ import android.view.animation.Transformation;
  */
 public class ProgressButton extends View {
 
-
     private Paint paintRectF;
     private Paint paintText;
 
@@ -37,24 +36,38 @@ public class ProgressButton extends View {
     private RectF mRectF = new RectF();
     private RectF mRectFPro = new RectF();
 
-    private int bgColor;
+    private int backgroundColor;
     public void setBgColor(int color)
-    { this.bgColor=color; }
+    { this.backgroundColor = color; }
 
     private int textColor;
     public void setTextColor(int color)
-    { this.textColor=color; }
+    { this.textColor = color; }
 
-    private int proColor;
-    public void setProColor(int color)
-    { this.proColor=color; }
+    private int progressColor;
+    public void setProgressColor(int color)
+    { this.progressColor = color; }
 
-    private String text;
+    private String buttonText;
     public void setButtonText(String s) {
-        this.text = s;
+        this.buttonText = s;
         invalidate();
     }
 
+    private int progressButtonDuration = 200;
+    public void setprogressButtonDuration(int time)
+    { progressButtonDuration= time;}
+
+    private int progressAnimationSpeed = 400;
+    public void setProgressAnimationSpeed(int time)
+    { progressAnimationSpeed = time;}
+
+    private int scaleAnimationDuration = 300;
+    public void setScaleAnimationDuration(int time)
+    { scaleAnimationDuration = time;}
+
+
+    private boolean mStarted = false;
     private boolean mStop = false;
     public ProgressButton(Context context) {
         super(context);
@@ -67,9 +80,9 @@ public class ProgressButton extends View {
                 R.styleable.ProgressButton,
                 0, 0);
         try {
-            bgColor = a.getColor(R.styleable.ProgressButton_backgroundColor, Color.BLUE);
-            proColor = a.getColor(R.styleable.ProgressButton_progressColor, Color.WHITE);
-            text = a.getString(R.styleable.ProgressButton_text);
+            backgroundColor = a.getColor(R.styleable.ProgressButton_backgroundColor, Color.BLUE);
+            buttonText = a.getString(R.styleable.ProgressButton_text);
+            progressColor = a.getColor(R.styleable.ProgressButton_progressColor, Color.WHITE);
             textColor = a.getColor(R.styleable.ProgressButton_textColor, Color.WHITE);
 
         } finally {
@@ -107,10 +120,8 @@ public class ProgressButton extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         paintText.setColor(textColor);
-        paintRectF.setColor(bgColor);
-        paintPro.setColor(proColor);
-
-
+        paintRectF.setColor(backgroundColor);
+        paintPro.setColor(progressColor);
         mRectF.left = mPadding + mSpac;
         mRectF.top = mPadding;
         mRectF.right = getMeasuredWidth() - mPadding - mSpac;
@@ -131,31 +142,34 @@ public class ProgressButton extends View {
         }
 
         if (mSpac < (getMeasuredWidth() - getMeasuredHeight()) / 2.0f)
-            canvas.drawText(text,
-                            getMeasuredWidth() / 2.0f - getFontLength(paintText, text) / 2.0f,
-                            getMeasuredHeight() / 2.0f + getFontHeight(paintText, text) / 3.0f,
+            canvas.drawText(buttonText,
+                            getMeasuredWidth() / 2.0f - getFontLength(paintText, buttonText) / 2.0f,
+                            getMeasuredHeight() / 2.0f + getFontHeight(paintText, buttonText) / 3.0f,
                             paintText);
 
     }
 
     public void startAnim() {
-        mStop = false;
-        setClickable(false);
-        if (mProgressButtonAnim != null) {
-            clearAnimation();
-            int progerssButtonDuration = 200;
-            mProgressButtonAnim.setDuration(progerssButtonDuration);
+        if (!mStarted) {
+            mStarted = true;
+            mStop = false;
+            setClickable(false);
+            if (mProgressButtonAnim != null) {
+                clearAnimation();
+                mProgressButtonAnim.setDuration(progressButtonDuration);
+            }
+            startAnimation(mProgressButtonAnim);
         }
-        startAnimation(mProgressButtonAnim);
+
     }
 
-    public void startProAnim() {
+    private void progressAnim() {
         if (mProgressRotateAnim != null) {
             clearAnimation();
-            int rotateAnimationDuration = 400;
-            mProgressRotateAnim.setDuration(rotateAnimationDuration);
+            mProgressRotateAnim.setDuration(progressAnimationSpeed);
         }
         startAnimation(mProgressRotateAnim);
+
     }
 
     public void stopAnim(final OnStopAnim mOnStopAnim) {
@@ -173,7 +187,6 @@ public class ProgressButton extends View {
                                                     1.0f, (float)width / getMeasuredHeight() * 3.5f,
                                                     Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         }
-        int scaleAnimationDuration = 300;
         mProgressScaleAnim.setDuration(scaleAnimationDuration);
         startAnimation(mProgressScaleAnim);
         mProgressScaleAnim.setAnimationListener(new Animation.AnimationListener() {
@@ -182,11 +195,11 @@ public class ProgressButton extends View {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-
                 clearAnimation();
                 mOnStopAnim.Stop();
                 mSpac = 0;
                 invalidate();
+
             }
 
             @Override
@@ -194,15 +207,13 @@ public class ProgressButton extends View {
         });
     }
 
-
-    private class ProgressButtonAnim
-            extends Animation {
+    private class ProgressButtonAnim extends Animation {
         @Override
         protected void applyTransformation(float interpolatedTime, Transformation t) {
             super.applyTransformation(interpolatedTime, t);
             mSpac = (getMeasuredWidth() - getMeasuredHeight()) / 2.0f * interpolatedTime;
             invalidate();
-            if (interpolatedTime == 1.0f) startProAnim();
+            if (interpolatedTime == 1.0f) progressAnim();
         }
     }
 
@@ -224,9 +235,7 @@ public class ProgressButton extends View {
 
     }
 
-    public interface OnStopAnim {
-        void Stop ();
-    }
+    public interface OnStopAnim { void Stop ();}
 
 
 }

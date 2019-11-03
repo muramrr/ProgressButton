@@ -18,17 +18,17 @@ class LoginActivity: AppCompatActivity(R.layout.activity_login){
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		val progressButton = findViewById<ProgressButton>(R.id.login)
+
 		progressButton.setOnClickListener {
 			progressButton.startAnim()
 			Handler().postDelayed({
 				                      progressButton.stopAnim { startMainActivity() }
-			                      }, 2000)
+			                      }, 500)
 		}
 	}
 
 	private fun startMainActivity(){
 		val mainActivityIntent = Intent(this, MainActivity::class.java)
 		startActivity(mainActivityIntent)
-		finish()
 	}
 }
