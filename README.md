@@ -40,10 +40,11 @@ dependencies {
     android:layout_width="match_parent"
     android:id="@+id/btn_done"
     android:layout_margin="20dp"
-    app:backgroundColor="@android:color/holo_orange_light"
+    app:backgroundColor="#2962FF"
     app:progressColor="@android:color/holo_orange_light"
     app:text="DONE!"
     app:textColor="@android:color/black" />
+
 ```
 Available attributes:
 * app:backgroundColor - **Button background color** *(default = Color.BLUE)*
@@ -52,6 +53,7 @@ Available attributes:
 * app:textColor - **Button text color** *(default = Color.WHITE)*
 ## Code
 
+#### Java
 ```java
 private ProgressButton pb_button;
 ...
@@ -72,7 +74,32 @@ pb_button.setOnClickListener(new View.OnClickListener() {
   }
 });
 ```
-Available methods:
+#### Kotlin
+```kotlin
+val progressButton = findViewById<ProgressButton>(R.id.btn_done)
+progressButton.setOnClickListener {
+	progressButton.startAnim()
+	Handler().postDelayed({ progressButton.stopAnim { startMainActivity() }}, 2000)
+}
+```
+
+#### RxJava 2 + kotlin
+```rx
+disposables.add(signUp()
+            .observeOn(AndroidSchedulers.mainThread())
+	    .doOnSubscribe { progressButton.startAnim() }
+	    .doOnSuccess { progressButton.stopAnim { startMainActivity() } }
+            .subscribe({
+	    		//your code
+                       },
+                       {
+                       Toast.makeText(this,"error",
+                                      Toast.LENGTH_SHORT).show()
+                       }))
+```
+
+
+#### Public methods:
 * setBgColor(int color) - **Set button background color**
 * setProColor(int color) - **Set progress color**
 * setButtonText(String str) - **Set button text**
