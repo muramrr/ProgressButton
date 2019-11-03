@@ -29,7 +29,7 @@ allprojects {
 Add implementation in your app.gradle
 ```gradle
 dependencies {
-  implementation 'com.github.muramrr:ProgressButton:1.0'
+  implementation 'com.github.muramrr:ProgressButton:1.1'
 }
 ```
 ## Usage XML
@@ -100,6 +100,9 @@ disposables.add(signUp()
 
 
 #### Public methods:
+* setProgressButtonDuration(int time) - **Set button transformation speed in ms (default = 200)**
+* setProgressAnimationSpeed(int time) - **Set progress spinner speed in ms (default = 400)**
+* setScaleAnimationDuration(int time) - **Set scale transformation speed in ms (default = 300)**
 * setBgColor(int color) - **Set button background color**
 * setProColor(int color) - **Set progress color**
 * setButtonText(String str) - **Set button text**
