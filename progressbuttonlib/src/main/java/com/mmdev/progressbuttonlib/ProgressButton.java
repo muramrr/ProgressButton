@@ -55,7 +55,7 @@ public class ProgressButton extends View {
     }
 
     private int progressButtonDuration = 200;
-    public void setprogressButtonDuration(int time)
+    public void setProgressButtonDuration(int time)
     { progressButtonDuration= time;}
 
     private int progressAnimationSpeed = 400;
