@@ -29,7 +29,7 @@ allprojects {
 Add implementation in your app.gradle
 ```gradle
 dependencies {
-  implementation 'com.github.muramrr:ProgressButton:1.1'
+  implementation 'com.github.muramrr:ProgressButton:1.2'
 }
 ```
 ## Usage XML
