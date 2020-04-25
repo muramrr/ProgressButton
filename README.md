@@ -1,6 +1,6 @@
 # ProgressButton  [![](https://jitpack.io/v/muramrr/ProgressButton.svg)](https://jitpack.io/#muramrr/ProgressButton) [![](https://img.shields.io/github/license/muramrr/ProgressButton.svg)](https://github.com/muramrr/ProgressButton/blob/master/LICENSE)
 
-Original prototype [Dribble link](https://dribbble.com/shots/1945593-Login-Home-Screen)
+Original prototype [Dribbble link](https://dribbble.com/shots/1945593-Login-Home-Screen)
 
 [iOS library](https://github.com/entotsu/TKSubmitTransition)
 
