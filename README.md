@@ -1,10 +1,19 @@
 # ProgressButton  [![](https://jitpack.io/v/muramrr/ProgressButton.svg)](https://jitpack.io/#muramrr/ProgressButton) [![](https://img.shields.io/github/license/muramrr/ProgressButton.svg)](https://github.com/muramrr/ProgressButton/blob/master/LICENSE)
 
+**Legacy**
+
 Original prototype [Dribbble link](https://dribbble.com/shots/1945593-Login-Home-Screen)
 
 [iOS library](https://github.com/entotsu/TKSubmitTransition)
 
 Sample project available in **app** directory
+
+## Checkout MotionLayout solution
+
+*Not needed to add library dependency*
+
+[ProgressButton using MotionLayout](https://github.com/muramrr/ProgressButton_MotionLayout)
+
 
 
 ## Overview
