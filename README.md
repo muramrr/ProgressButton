@@ -11,7 +11,7 @@ Sample project available in **app** directory
 
 Custom button with progress anim and transition to another activity/fragment
 
-Better to use with **AsyncTask** or **Handler()** or *RxJava* **doOnSuccess()**
+Better to use with <s>**AsyncTask**</s> or **Handler()** or *RxJava* **doOnSuccess()**
 
 ![](https://github.com/muramrr/ProgressButton/blob/master/test.gif)
 ## Installation
